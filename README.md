@@ -1,7 +1,7 @@
-# CCSRCH-ADV
+# CCSRCH-ADVANCED
 
 
-CCSRCH-ADV or CCSRCH-ADVANCE is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
+CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 
 ### Copyright
 

@@ -1,10 +1,11 @@
-# CCSRCH
+# CCSRCH-ADV
 
-[![Build Status](https://travis-ci.org/adamcaudill/ccsrch.svg?branch=master)](https://travis-ci.org/adamcaudill/ccsrch)
 
-CCSRCH is a cross-platform tool for searching filesystems for credit card information.
+CCSRCH-ADV or CCSRCH-ADVANCE is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 
 ### Copyright
+
+Copyright (c) 2020 Joachim Miens (contact@joachim-miens.com)
 
 Copyright (c) 2012-2016 Adam Caudill (adam@adamcaudill.com)
 
@@ -12,7 +13,7 @@ Copyright (c) 2007 Mike Beekey (zaphod2718@yahoo.com)
 
 This application is licensed under the GNU General Public License (see below & COPYING).
 
-This project is a fork of CCSRCH as maintained by Mike Beekey at: http://sourceforge.net/projects/ccsrch/ - it is based on the last version released (1.0.3) which was released in August 2007.
+This project is a fork of CCSRCH as maintained by Adam Caudill at: https://github.com/adamcaudill/ccsrch - it is based on the last version released (1.0.9) which was released in Jan 2, 2017.
 
 ### Using CCSRCH
 
@@ -38,7 +39,8 @@ Usage: ./ccsrch <options> <start path>
     -n <list>      File extensions to exclude (i.e .dll,.exe)
     -m             Mask the PAN number.
     -w             Check for card matches wrapped across lines.
--h             Usage information
+    -h             Usage information
+    -x             Hide PAN values by XXXX********XXXX format (* is hidden)
 ```
 
 **Examples:**
@@ -163,75 +165,19 @@ Install [MinGW](http://www.mingw.org/) ([installer](http://sourceforge.net/proje
 
 ### <a id="downloads"></a>Downloads
 
-* [v1.0.8 - Win32](https://adamcaudill.com/files/ccsrch-1.0.8-win32.zip)
-* [v1.0.8 - OSX-Intel-64](https://adamcaudill.com/files/ccsrch-1.0.8-osx_intel.zip)
-* [v1.0.8b1 - Win32](https://adamcaudill.com/files/ccsrch-1.0.8beta1.zip)
-* [v1.0.7 - Win32](https://adamcaudill.com/files/ccsrch-1.0.7.zip)
-* [v1.0.6 - Win32](https://adamcaudill.com/files/ccsrch-1.0.6.zip)
+CURRENTLY IN DEVELOPMENT
 
 ### Revisions
 
-1.0.9 (In Progress)
+1.0.10 (Resuming the project) - In progress
 
-* Better support for building on OSX.
-* Added -m option to mask screen & log output.
-* Code cleanup.
-* Bugfix: avoid lowercasing the file extension
+* Add -x option to hide pan with a specific format
 
-1.0.8 (May 15, 2012)
-
-* Add a new status display, provides a live view of what's happening.
-
-1.0.7 (Feb. 29, 2012)
-
-* Fix compiling on *nix systems.
-* Change to ignore any match that has 7 repeating digits.
-* Ignore results that are made up of the same two repeating digits.
-
-1.0.6 (Jan. 17, 2012):
-
-* Fix for ignoring NULL, CR & LF.
-* Ignore dash when scanning (ASCII #45).
-* Exclude results with the last 8 digits repeating (very unlikely to be a real PAN).
-
-1.0.5 (Jan. 13, 2012):
-
-* Bug fixes.
-
-1.0.4 (Jan. 13, 2012):
-
-* Added option to output the file name, and how many hits were found to the console when using -o (see -c in usage).
-* Added option to limit the number of results from a single file before going on to the next file (see -l in usage).
-* Added option to exclude certain file types from the scan (see -n in usage).
-
-1.0.3 (Aug. 28, 2007):
-
-* Added the ability to just output filenames of potential PAN data.
-* Removed the 13 digit VISA  number check.
-* Cleaned up some error and signal handling that varied across operating systems.
-
-1.0.2 (Dec. 12, 2005):
-
-* Added some additional track data format assumptions for track 1.
-
-1.0.1 (Sep. 27, 2005):
-
-* Added options for searching files for track data patterns.
-* Added the ability to select certain output options on the command line.
-
-0.9.3 (Jul. 28, 2005):
-
-* Removed extraneous calls.
-* Simplified parameter passing. 
-* Fixed non-portable type issues. 
-* Removed debugging info.
-
-0.9.1 (Jul. 15, 2005):
-
-* Initial release.
+1.0.9 (Original version from https://github.com/adamcaudill/ccsrch/commits/master)
+-> Contributors : John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M
 
 ### Contributors
-John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M
+
 
 ### License
 

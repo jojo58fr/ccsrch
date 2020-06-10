@@ -15,7 +15,7 @@ This application is licensed under the GNU General Public License (see below & C
 
 This project is a fork of CCSRCH as maintained by Adam Caudill at: https://github.com/adamcaudill/ccsrch - it is based on the last version released (1.0.9) which was released in Jan 2, 2017.
 
-### Using CCSRCH
+### Using CCSRCH-ADV
 
 ```
 Usage: ./ccsrch <options> <start path>
@@ -174,7 +174,7 @@ CURRENTLY IN DEVELOPMENT
 * Add -x option to hide pan with a specific format
 
 1.0.9 (Original version from https://github.com/adamcaudill/ccsrch/commits/master)
--> Contributors : John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M
+**-> Contributors : John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M**
 
 ### Contributors
 

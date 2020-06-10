@@ -80,6 +80,7 @@ static int    mask_card_number     = 0;
 static int    limit_ascii          = 0;
 static int    ignore_count         = 0;
 static int    wrap                 = 0;
+static int	  hiddenPan			   = 0;
 
 static void initialize_buffer()
 {
@@ -914,6 +915,9 @@ int main(int argc, char *argv[])
         	break;
         case 'w':
         	wrap = 1;
+        	break;
+		case 'x':
+        	hiddenPan = 1;
         	break;
         case 'h':
         default:

@@ -1,5 +1,6 @@
 /*
- * ccsrch (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
+ * ccsrch (c) 2020 Joachim Miens <contact@joachim-miens.com>
+ *        (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
  *        (c) 2007 Mike Beekey <zaphod2718@yahoo.com>
  *
  * All rights reserved.
@@ -39,7 +40,7 @@
   #define SIGQUIT 3
 #endif
 
-#define PROG_VER "ccsrch 1.0.9 (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
+#define PROG_VER "ccsrch 1.0.10 (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
 
 #define MDBUFSIZE    512
 #define MAXPATH     2048
@@ -50,37 +51,42 @@
 static char   ccsrch_buf[BSIZE];
 static char   lastfilename[MAXPATH];
 static char  *exclude_extensions;
-static char  *logfilename          = NULL;
-static const char  *currfilename   = NULL;
-static char  *ignore               = NULL;
-static FILE  *logfilefd            = NULL;
-static long   total_count          = 0;
-static long   file_count           = 0;
-static long   currfile_atime       = 0;
-static long   currfile_mtime       = 0;
-static long   currfile_ctime       = 0;
-static time_t init_time            = 0;
+static char  *logfilename           = NULL;
+static const char  *currfilename    = NULL;
+static char  *ignore                = NULL;
+static FILE  *logfilefd             = NULL;
+static long   total_count           = 0;
+static long   file_count            = 0;
+static long   currfile_atime        = 0;
+static long   currfile_mtime        = 0;
+static long   currfile_ctime        = 0;
+static time_t init_time             = 0;
 static int    cardbuf[CARDSIZE];
-static int    print_byte_offset    = 0;
-static int    print_epoch_time     = 0;
-static int    print_julian_time    = 0;
-static int    print_filename_only  = 0;
-static int    print_file_hit_count = 0;
-static int    ccsrch_index         = 0;
-static int    tracksrch            = 0;
-static int    tracktype1           = 0;
-static int    tracktype2           = 0;
-static int    trackdatacount       = 0;
-static int    file_hit_count       = 0;
-static int    limit_file_results   = 0;
-static int    newstatus            = 0;
-static int    status_lastupdate    = 0;
-static int    status_msglength     = 0;
-static int    mask_card_number     = 0;
-static int    limit_ascii          = 0;
-static int    ignore_count         = 0;
-static int    wrap                 = 0;
-static int	  hiddenPan			   = 0;
+static int    print_byte_offset     = 0;
+static int    print_epoch_time      = 0;
+static int    print_julian_time     = 0;
+static int    print_filename_only   = 0;
+static int    print_file_hit_count  = 0;
+static int    ccsrch_index          = 0;
+static int    tracksrch             = 0;
+static int    tracktype1            = 0;
+static int    tracktype2            = 0;
+static int    trackdatacount        = 0;
+static int    file_hit_count        = 0;
+static int    limit_file_results    = 0;
+static int    newstatus             = 0;
+static int    status_lastupdate     = 0;
+static int    status_msglength      = 0;
+static int    mask_card_number      = 0;
+static int    limit_ascii           = 0;
+static int    ignore_count          = 0;
+static int    wrap                  = 0;
+static int	  hiddenPan			        = 0;
+
+static char   *inbuf                = NULL; //Input File Path
+static FILE   *in                   = NULL; //File Reading/Writing Stream
+
+static long    currentPosition       = 0;
 
 static void initialize_buffer()
 {
@@ -130,6 +136,45 @@ static int track2_srch(int cardlen)
   }
 }
 
+
+//Hide pan function : Allow to write in original file to hide pan values
+static void hide_pan(const char *originalPan, int sizeOriginalPan, int positionOffset)
+{
+  /* HIDING PAN */
+  char hiddingPan[CARDSIZE] = "";
+  for(int i = 0; i < CARDSIZE; i++)
+  {
+    if( (i <= 4 || i >= (sizeOriginalPan - 4)) )
+    {
+      hiddingPan[i] = originalPan[i];
+    }
+    else
+    {
+        hiddingPan[i] = '*';
+    }
+  }
+
+  printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
+  printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
+
+  //FILE * pFile;
+
+  //char* buf = inbuf;
+  //strcat(buf, "resolve");
+
+  //pFile = fopen ( buf , "wb" );
+
+  fseek ( in , (positionOffset - sizeOriginalPan) , SEEK_SET );
+  fputs ( hiddingPan , in );
+  fflush(in);
+  //fprintf ( in , "%s", hiddingPan);
+  
+  
+  //fclose ( pFile );
+}
+
+
+
 static void print_result(const char *cardname, int cardlen, long byte_offset)
 {
   int		i;
@@ -164,6 +209,10 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
   if (mask_card_number)
     mask_pan(nbuf);
 
+  //printf("\n%s\n", nbuf);
+  if (hiddenPan)
+    hide_pan(nbuf, cardlen, currentPosition);
+
   /* MB we need to figure out how to update the count and spit out the final
   filename with the count.  ensure that it gets flushed out on the last match
   if you are doing a diff between previous filename and new filename */
@@ -171,6 +220,7 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
   if (print_filename_only) {
     snprintf(basebuf, MDBUFSIZE, "%s", currfilename);
   } else {
+    //Print elements to card : Current filename, card name, content of PAN
     snprintf(basebuf, MDBUFSIZE, "%s\t%s\t%s", currfilename, cardname, nbuf);
   }
 
@@ -232,12 +282,19 @@ static void check_mastercard_16(long offset)
   snprintf(num2buf, 3, "%d%d", cardbuf[0], cardbuf[1]);
   vnum = atoi(num2buf);
   if ((vnum > 50) && (vnum < 56))
-    print_result("MASTERCARD", 16, offset);
+  {
+        print_result("MASTERCARD", 16, offset);
+        printf("\n%s\n", num2buf);
+  }
 
   snprintf(num2buf, sizeof(num2buf), "%d%d%d%d%d%d", cardbuf[0], cardbuf[1], cardbuf[2], cardbuf[3], cardbuf[4], cardbuf[5]);
   vnum = atoi(num2buf);
   if ((vnum >= 222100) && (vnum <= 272099))
+  {
     print_result("MASTERCARD", 16, offset);
+    printf("\n%s\n", num2buf);
+
+  }
 }
 
 static void check_visa_16(long offset)
@@ -332,6 +389,11 @@ static void check_diners_club_cb_14(long offset)
 
 static int process_prefix(int len, long offset)
 {
+  #ifdef DEBUG
+    printf("Len: %i\n"        , len);
+    printf("Offset: %ld\n"    , offset);
+  #endif
+
   switch (len) {
     case 16:
       check_mastercard_16(offset);
@@ -443,9 +505,10 @@ static void update_status(const char *filename, int position)
   }
 }
 
+//Main operation : Reading file, detect number and check if is a card by using luhn algorithm.
 static int ccsrch(const char *filename)
 {
-  FILE  *in            = NULL;
+
   int   cnt            = 0;
   long  byte_offset    = 1;
   int   k              = 0;
@@ -458,10 +521,12 @@ static int ccsrch(const char *filename)
   printf("Processing file %s\n",filename);
 #endif
 
+  //readFile(filename);
+
   memset(&lastfilename,'\0',MAXPATH);
   ccsrch_index = 0;
   errno        = 0;
-  in = fopen(filename, "rb");
+  in = fopen(filename, "rb+");//"rb");
   if (in == NULL) {
     if (errno==13) {
       fprintf(stderr, "ccsrch: Unable to open file %s for reading; Permission Denied\n", filename);
@@ -482,6 +547,8 @@ static int ccsrch(const char *filename)
     cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
     if (cnt <= 0)
       break;
+
+
 
     if (limit_ascii && !is_ascii_buf(ccsrch_buf, cnt))
       break;
@@ -506,6 +573,8 @@ static int ccsrch(const char *filename)
         counter      = 0;
         ignore_count = 0;
       }
+
+      currentPosition++;
 
       if (((counter > 12) && (counter < CARDSIZE)) && (check)) {
         luhn_check(counter, byte_offset-counter);
@@ -842,7 +911,7 @@ int main(int argc, char *argv[])
 {
   struct stat	ffstat;
   char       *inputstr      = NULL;
-  char       *inbuf         = NULL;
+  //char       *inbuf         = NULL; //Input File Path
   char       *tracktype_str = NULL;
   char        tmpbuf[BSIZE];
   int         err            = 0;
@@ -853,7 +922,7 @@ int main(int argc, char *argv[])
   if (argc < 2)
     usage(argv[0]);
 
-  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw")) != -1) {
+  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw:x")) != -1) {
       switch (c) {
         case 'a':
           limit_ascii = 1;
@@ -916,7 +985,7 @@ int main(int argc, char *argv[])
         case 'w':
         	wrap = 1;
         	break;
-		case 'x':
+		    case 'x':
         	hiddenPan = 1;
         	break;
         case 'h':

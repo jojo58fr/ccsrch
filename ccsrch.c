@@ -1,9 +1,13 @@
-/*
- * ccsrch (c) 2020 Joachim Miens <contact@joachim-miens.com>
+/**
+ * \ingroup ccsrch
+ * \brief CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information.
+ * \author ccsrch (c) 2020 Joachim Miens <contact@joachim-miens.com>
  *        (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
  *        (c) 2007 Mike Beekey <zaphod2718@yahoo.com>
- *
- * All rights reserved.
+ * \version $Revision: 1.0.10 DEV
+ * \date $Date: 2020/06/12 07:55:12
+ * 
+ * All rights reserved. See COPYING for more informations.
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free
@@ -40,7 +44,7 @@
   #define SIGQUIT 3
 #endif
 
-#define PROG_VER "ccsrch 1.0.10 (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
+#define PROG_VER "ccsrch 1.0.10 DEV (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
 
 #define MDBUFSIZE    512
 #define MAXPATH     2048
@@ -88,11 +92,20 @@ static FILE   *in                   = NULL; //File Reading/Writing Stream
 
 static long    currentPosition       = 0;
 
+/** 
+ * \brief Initialize size of cardbuf at initialize.
+ * \return void
+  */
 static void initialize_buffer()
 {
   memset(cardbuf, 0, CARDSIZE);
 }
 
+/** 
+  * \brief Mask the PAN number in output logs
+  * \param char *s: char that contains PAN numbers
+  * \return void
+  */
 static void mask_pan(char *s)
 {
   /* Make the PAN number; probably a better way to do this */

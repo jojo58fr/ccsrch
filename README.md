@@ -65,6 +65,10 @@ Search for all track data types in ascii only files and ignore known test card n
 
 `ccsrch -T -i ignore.list -a ./`
 
+Search for credit card data and hide pan in the source file for security issues (Data masking and desensitization (DM)).
+
+`ccsrch –o mycard.log -x c:\storage`
+
 ### Output
 
 All output is tab delimited with the following order (depending on the parameters):

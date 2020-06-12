@@ -154,23 +154,14 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan, int positionO
     }
   }
 
-  printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
-  printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
+  //printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
+  //printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
 
-  //FILE * pFile;
-
-  //char* buf = inbuf;
-  //strcat(buf, "resolve");
-
-  //pFile = fopen ( buf , "wb" );
 
   fseek ( in , (positionOffset - sizeOriginalPan) , SEEK_SET );
   fputs ( hiddingPan , in );
   fflush(in);
-  //fprintf ( in , "%s", hiddingPan);
-  
-  
-  //fclose ( pFile );
+
 }
 
 

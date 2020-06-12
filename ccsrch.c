@@ -168,7 +168,7 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan, int positionO
   }
 
   //printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
-  //printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
+  printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
 
 
   fseek ( in , (positionOffset - sizeOriginalPan) , SEEK_SET );
@@ -850,7 +850,8 @@ static void usage(const char *progname)
   printf("    -n <list>      File extensions to exclude (i.e .dll,.exe)\n");
   printf("    -m\t\t   Mask the PAN number.\n");
   printf("    -w\t\t   Check for card matches wrapped across lines.\n");
-  printf("NEW -x\t\t   Hide PAN values by XXXX********XXXX format (* is hidden)\n\n");
+  printf("NEW -x\t\t   Hide PAN values by XXXX********XXXX format (* is hidden) on source file\n\n");
+  printf("NEW -xa\t\t   Replace PAN values by censor it using asterisk (*) on source file\n\n");
   printf("    -h\t\t   Usage information\n\n");
   printf("See https://github.com/adamcaudill/ccsrch for more information.\n\n");
   exit(0);

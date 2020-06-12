@@ -846,6 +846,7 @@ static void usage(const char *progname)
   printf("    -n <list>      File extensions to exclude (i.e .dll,.exe)\n");
   printf("    -m\t\t   Mask the PAN number.\n");
   printf("    -w\t\t   Check for card matches wrapped across lines.\n");
+  printf("NEW -x\t\t   Hide PAN values by XXXX********XXXX format (* is hidden)\n\n");
   printf("    -h\t\t   Usage information\n\n");
   printf("See https://github.com/adamcaudill/ccsrch for more information.\n\n");
   exit(0);

@@ -90,10 +90,10 @@ static int	  hiddenPan			        = 0;
 static char   *inbuf                = NULL; //Input File Path
 static FILE   *in                   = NULL; //File Reading/Writing Stream
 
-static long    currentPosition       = 0;
+static int    currentPosition       = 0;
 
 /** 
- * \brief Initialize size of cardbuf at initialize.
+ * \brief Initialize size of cardbuf at initialize.-+-
  * \return void
   */
 static void initialize_buffer()
@@ -151,7 +151,7 @@ static int track2_srch(int cardlen)
 
 
 //Hide pan function : Allow to write in original file to hide pan values
-static void hide_pan(const char *originalPan, int sizeOriginalPan, int positionOffset)
+static void hide_pan(const char *originalPan, int sizeOriginalPan)
 {
   /* HIDING PAN */
   char hiddingPan[CARDSIZE] = "";
@@ -168,10 +168,10 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan, int positionO
   }
 
   //printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
-  printf("originalPan: %s VS positionOffset: %i", originalPan, (positionOffset - sizeOriginalPan));
+  printf("originalPan: %s VS positionOffset: %i", originalPan, (currentPosition - sizeOriginalPan));
 
 
-  fseek ( in , (positionOffset - sizeOriginalPan) , SEEK_SET );
+  fseek ( in , (currentPosition - sizeOriginalPan) , SEEK_SET );
   fputs ( hiddingPan , in );
   fflush(in);
 
@@ -215,7 +215,7 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
 
   //printf("\n%s\n", nbuf);
   if (hiddenPan)
-    hide_pan(nbuf, cardlen, currentPosition);
+    hide_pan(nbuf, cardlen);
 
   /* MB we need to figure out how to update the count and spit out the final
   filename with the count.  ensure that it gets flushed out on the last match
@@ -539,46 +539,68 @@ static int ccsrch(const char *filename)
     }
     return -1;
   }
+
   currfilename = filename;
   byte_offset  = 1;
   ignore_count = 0;
   file_count++;
 
+  currentPosition = 0;
+
   initialize_buffer();
 
   while (limit_exceeded == 0) {
+    
     memset(&ccsrch_buf, '\0', BSIZE);
+    
+    printf("\n Avant fread: %i \n", cnt);
+
     cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
+    
+    printf("\n Après fread: %i \n", cnt);
+
+
     if (cnt <= 0)
       break;
 
-
+    //printf("\n Aie: %i \n", cnt);
 
     if (limit_ascii && !is_ascii_buf(ccsrch_buf, cnt))
       break;
 
     for (ccsrch_index=0; ccsrch_index<cnt && limit_exceeded==0; ccsrch_index++) {
+
+      currentPosition++;
+
+
       /* check to see if our data is 0...9 (based on ACSII value) */
       if (isdigit(ccsrch_buf[ccsrch_index])) {
+        
         check = 1;
         cardbuf[counter] = ((int)ccsrch_buf[ccsrch_index])-'0';
         counter++;
+
       } else if ((ccsrch_buf[ccsrch_index] == 0) || (wrap && ccsrch_buf[ccsrch_index] == '\r') ||
       	   (wrap && ccsrch_buf[ccsrch_index] == '\n') || (ccsrch_buf[ccsrch_index] == '-')) {
+        
         /*
          * we consider dashes, nulls, new lines, and carriage
          * returns to be noise, so ingore those
          */
          ignore_count += 1;
         check = 0;
+      
       } else {
+        
         check = 0;
         initialize_buffer();
+        
         counter      = 0;
         ignore_count = 0;
       }
 
-      currentPosition++;
+      //printf("\n %i \n", cnt);//ftell(in));
+      //currentPosition = ftell(in);
 
       if (((counter > 12) && (counter < CARDSIZE)) && (check)) {
         luhn_check(counter, byte_offset-counter);
@@ -667,9 +689,9 @@ static int get_file_stat(const char *inputfile, struct stat *fileattr)
     free(tmp2buf);
     return -1;
   }
-  currfile_atime=fileattr->st_atime;
-  currfile_mtime=fileattr->st_mtime;
-  currfile_ctime=fileattr->st_ctime;
+  currfile_atime = fileattr->st_atime;
+  currfile_mtime = fileattr->st_mtime;
+  currfile_ctime = fileattr->st_ctime;
   free(tmp2buf);
   return 0;
 }

@@ -90,7 +90,7 @@ static int	  hiddenPan			        = 0;
 static char   *inbuf                = NULL; //Input File Path
 static FILE   *in                   = NULL; //File Reading/Writing Stream
 
-static int    currentPosition       = 0;
+static unsigned long    currentPosition       = 0;
 
 /** 
  * \brief Initialize size of cardbuf at initialize.-+-
@@ -155,7 +155,7 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan)
 {
   /* HIDING PAN */
   char hiddingPan[CARDSIZE] = "";
-  for(int i = 0; i < CARDSIZE; i++)
+  for(int i = 0; i < sizeOriginalPan; i++)
   {
     if( (i <= 4 || i >= (sizeOriginalPan - 4)) )
     {
@@ -175,6 +175,8 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan)
   fputs ( hiddingPan , in );
   fflush(in);
 
+  if(currentPosition > 475689)
+    exit(1);
 }
 
 
@@ -556,8 +558,9 @@ static int ccsrch(const char *filename)
     printf("\n Avant fread: %i \n", cnt);
 
     cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
+    fflush(in);
     
-    printf("\n Après fread: %i \n", cnt);
+    printf("\n Aprï¿½s fread: %i \n", cnt);
 
 
     if (cnt <= 0)
@@ -570,7 +573,6 @@ static int ccsrch(const char *filename)
 
     for (ccsrch_index=0; ccsrch_index<cnt && limit_exceeded==0; ccsrch_index++) {
 
-      currentPosition++;
 
 
       /* check to see if our data is 0...9 (based on ACSII value) */
@@ -609,10 +611,10 @@ static int ccsrch(const char *filename)
           cardbuf[k] = cardbuf[k + 1];
         }
         cardbuf[k] = -1;
-        luhn_check(13,byte_offset-13);
-        luhn_check(14,byte_offset-14);
-        luhn_check(15,byte_offset-15);
-        luhn_check(16,byte_offset-16);
+        luhn_check(13, byte_offset-13);
+        luhn_check(14, byte_offset-14);
+        luhn_check(15, byte_offset-15);
+        luhn_check(16, byte_offset-16);
         counter--;
       }
       byte_offset++;

@@ -1,0 +1,551 @@
+2020-06-02 18:30:01.831 EMVControl (INF) rsyslogd: [origin software="rsyslogd" swVersion="5.8.2" x-pid="1136" x-info="http://www.rsyslog.com"] rsyslogd was HUPed
+2020-06-02 18:30:01.923 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:01.924 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:01.989 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:30:01.992 EMVControl (INF) VOIE[1902]: 'A'<< 0040004202020060218300103006721000001101501
+2020-06-02 18:30:01.992 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:01.992 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:30:01.992 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:30:01.992 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:30:01.992 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:30:01.992 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:30:01.992 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:30:01.992 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:30:01.992 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:01.992 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:30:01.994 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:01.994 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:02.054 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:30:02.056 EMVControl (INF) VOIE[1902]: 'A'<< 0030004202020060218300103006721000001101501
+2020-06-02 18:30:02.056 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:02.056 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:30:02.056 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2021 from 0
+2020-06-02 18:30:02.056 EMVControl (DEB) VOIE[1902]: received an PayAttention request from 0 IDTP=2020060218300103006721000001101501 Amount=420
+2020-06-02 18:30:02.056 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183002)
+2020-06-02 18:30:02.056 EMVControl (ERR) VOIE[1902]: NFC reader not configured by VOIE !!!
+2020-06-02 18:30:02.057 EMVControl (DEB) VOIE[1902]: SendMessageAResp 1 bytes
+2020-06-02 18:30:02.057 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:02.057 EMVControl (INF) VOIE[1902]:     > CA001\02
+2020-06-02 18:30:02.684 EMVControl (NOT) dpkg:     Name           Version
+2020-06-02 18:30:02.685 EMVControl (NOT) dpkg: +++-==============-==============
+2020-06-02 18:30:02.685 EMVControl (NOT) dpkg: ii  AprrAreaUserApps 4.5.4
+2020-06-02 18:30:03.823 EMVControl (DEB) VOIE[1902]: Receive msg B size=42
+2020-06-02 18:30:03.826 EMVControl (INF) VOIE[1902]: 'B'<< 0171130************7=220816131411981001   
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2001 from 0
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: received an AnalyzeBIN request
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183003)
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: ProcessCtrlMsgAnalyseBinQuestion montant: 420#012idtp: "2020060218300103006721000001101501"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "**************9307=2208161***********"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183003"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: montant: 420
+2020-06-02 18:30:03.826 EMVControl (DEB) VOIE[1902]: idtp: "2020060218300103006721000001101501"
+2020-06-02 18:30:03.827 EMVControl (DEB) VOIE[1902]: cinematique: ""
+2020-06-02 18:30:03.827 EMVControl (DEB) VOIE[1902]: etat_lisibilite_carte: 0
+2020-06-02 18:30:03.827 EMVControl (DEB) VOIE[1902]: piste_iso2: "**************9307=2208161***********"
+2020-06-02 18:30:03.827 EMVControl (DEB) VOIE[1902]: xac_mode: 1
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: vehicle_class: 0
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: voie_src_id: 0
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: cfg_with_chip_module: false
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: chip_module_status: false
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: cfg_with_nfc_reader: false
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: nfc_reader_status: false
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: card_into_reader: true
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: date: "20200602"
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: time: "183003"
+2020-06-02 18:30:03.829 EMVControl (DEB) VOIE[1902]: id_equipement: "030067213_161021009"
+2020-06-02 18:30:03.830 EMVControl (DEB) VOIE[1902]: hardware_version: "A"
+2020-06-02 18:30:03.835 EMVControl (DEB) VOIE[1902]: firmware_version: "04.05.04"
+2020-06-02 18:30:03.835 EMVControl (DEB) CORE[2897]: Received BIN_REQUEST from :VOIE
+2020-06-02 18:30:03.836 EMVControl (DEB) CORE[2897]: OnDoBinRequest - Received 155 bytes
+2020-06-02 18:30:03.836 EMVControl (INF) CORE[2897]: Adding PISTE
+2020-06-02 18:30:03.836 EMVControl (INF) CORE[2897]: Adding NFC
+2020-06-02 18:30:03.836 EMVControl (DEB) CORE[2897]: OnDoBinRequest - montant: 420#012idtp: "2020060218300103006721000001101501"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "**************9307=2208161***********"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183003"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012xac_start_ts_sec: 1591115403#012xac_start_ts_us: 832621
+2020-06-02 18:30:03.836 EMVControl (DEB) CORE[2897]: Select thread received: BIN_REQUEST - param=0x0
+2020-06-02 18:30:03.836 EMVControl (DEB) CORE[2897]: OnDoSelectRequest 
+2020-06-02 18:30:03.836 EMVControl (DEB) SELECT[12942]: Received BIN_REQUEST from :CORE
+2020-06-02 18:30:03.836 EMVControl (DEB) SELECT[12942]: BIN_REQUEST received
+2020-06-02 18:30:03.836 EMVControl (DEB) SELECT[12942]: PAN (**************9307)
+2020-06-02 18:30:03.842 EMVControl (DEB) SELECT[12942]: ISO2 read using magstripe reader
+2020-06-02 18:30:03.842 EMVControl (DEB) SELECT[12942]: will use Bins tree (/mnt/disk/TLP/T_EMETTEUR420)
+2020-06-02 18:30:03.842 EMVControl (INF) SELECT[12942]: Bins: Interval Algo => 1 row(s) found
+2020-06-02 18:30:03.842 EMVControl (INF) SELECT[12942]: sql> Select identifiant_plage, niveau_acceptation_banque, code_traitement_particulier,code_pays, longueur_numero_carte, code_reseau, type_de_carte, niveau_acceptation_piste_sesam, niveau_acceptation_cless_sesam, acceptation_si_aucune_da, timeout_da, controle_cle_luhn, debut_plage, fin_plage from T_EMETTEUR where rowid=151512
+2020-06-02 18:30:03.842 EMVControl (DEB) SELECT[12942]: Pan is found (row 151512)
+2020-06-02 18:30:03.842 EMVControl (DEB) SELECT[12942]: Found in Plage ID = 151512
+2020-06-02 18:30:03.842 EMVControl (ERR) SELECT[12942]: Card type (AUTRE) is not supported
+2020-06-02 18:30:03.842 EMVControl (DEB) SELECT[12942]: SendResponseToCore
+2020-06-02 18:30:03.842 EMVControl (DEB) CORE[2897]: Received BIN_RESPONSE from :APP:SELECT:0000002723
+2020-06-02 18:30:03.842 EMVControl (DEB) CORE[2897]: OnDoBinResponse - Received 417 bytes
+2020-06-02 18:30:03.842 EMVControl (DEB) CORE[2897]: OnDoBinResponse - montant: 420#012idtp: "2020060218300103006721000001101501"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "**************9307=2208161***********"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183003"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012xac_start_ts_sec: 1591115403#012xac_start_ts_us: 832621
+2020-06-02 18:30:03.846 EMVControl (DEB) CORE[2897]: Idle => Idle
+2020-06-02 18:30:03.846 EMVControl (DEB) VOIE[1902]: BIN_RESPONSE from :CORE 
+2020-06-02 18:30:03.846 EMVControl (DEB) VOIE[1902]: received an AnalyseBin Response montant: 420#012idtp: "2020060218300103006721000001101501"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "**************9307=2208161***********"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183003"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012pan: "**************9307"#012hash_pan: "0B9953BF9F42299F76E9222BF3142E8D786F3AD957287FD3ADC71042FD163D94"#012table_set_id_select: 2723#012truncated_pan: "XXXXXXXXXXXXXX9307"#012read_iso2: READ_SUCCESS#012read_chip: READ_NOT_PERFORMED#012read_cless: READ_NOT_PERFORMED#012iso2_result: 0#012processing_indicators {#012  card_rejected: true#012  record_tna: false#012  algo_exit_code: REFUS_PCI_DSS#012}#012bin_infos {#012  id_plage: 151512#012  niveau_acceptation_banque: APPROVED#012  code_traitement: 0#012  code_pays: ""#012  lg_num_carte: 0#012  code_reseau: "02"#012  type_carte: "AUTRE"#012  niveau_acceptation_piste_sesam: APPROVED#012  acceptation_si_pas_da: APPROVED#012  timeout_da: 0#012  controle_cle_luhn: 0#012  niveau_acceptation_cless_sesam: APPROVED#012}#012xac_start_ts_sec: 1591115403#012xac_start_ts_us: 832621
+2020-06-02 18:30:03.846 EMVControl (INF) VOIE[1902]: AlgoExitCode = REFUS_PCI_DSS(6)
+2020-06-02 18:30:03.846 EMVControl (INF) VOIE[1902]: Generating data_type=02 response
+2020-06-02 18:30:03.846 EMVControl (DEB) VOIE[1902]: SendMessageBResp 2 bytes
+2020-06-02 18:30:03.846 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [B] - Len=5+2
+2020-06-02 18:30:03.846 EMVControl (INF) VOIE[1902]:     > CB00202
+2020-06-02 18:30:04.243 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:30:04.246 EMVControl (INF) VOIE[1902]: 'A'<< 0040004202020060218300103006721000001101501
+2020-06-02 18:30:04.246 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:04.246 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:30:04.246 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:30:04.246 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:30:04.246 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:30:04.246 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:30:04.246 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:30:04.246 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:30:04.246 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:04.247 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:30:04.249 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:04.249 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:06.183 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:06.184 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:08.153 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:08.154 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:10.093 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:10.093 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:10.393 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:30:10.394 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:30:12.058 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:12.058 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:13.998 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:13.998 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:15.963 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:15.963 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:17.903 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:17.903 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:19.868 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:19.868 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:20.109 EMVControl (DEB) VOIE[1902]: ProcessTermMsgStatusEvent - event_id=930 alarm=-1: okay in_black_list=1
+2020-06-02 18:30:20.109 EMVControl (DEB) VOIE[1902]: CplStatus changed = false
+2020-06-02 18:30:20.109 EMVControl (WAR) VOIE[1902]: event transmission suppressed
+2020-06-02 18:30:21.807 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:21.808 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:23.772 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:23.773 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:25.712 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:25.713 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:26.393 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:30:26.394 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:30:27.677 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:27.682 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:29.622 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:29.623 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:31.587 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:31.588 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:33.527 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:30:33.534 EMVControl (INF) VOIE[1902]: 'A'<< 0040008902020060218303303006721000001101601
+2020-06-02 18:30:33.535 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:33.535 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:30:33.535 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:30:33.535 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:30:33.535 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:30:33.535 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:30:33.535 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:30:33.535 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:30:33.535 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:33.535 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:30:33.537 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:30:33.538 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:30:33.538 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:33.538 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:30:33.538 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:30:33.538 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:33.539 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:30:33.592 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:30:33.594 EMVControl (INF) VOIE[1902]: 'A'<< 0030008902020060218303303006721000001101601
+2020-06-02 18:30:33.594 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:33.594 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:30:33.595 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2021 from 0
+2020-06-02 18:30:33.595 EMVControl (DEB) VOIE[1902]: received an PayAttention request from 0 IDTP=2020060218303303006721000001101601 Amount=890
+2020-06-02 18:30:33.595 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183033)
+2020-06-02 18:30:33.595 EMVControl (ERR) VOIE[1902]: NFC reader not configured by VOIE !!!
+2020-06-02 18:30:33.595 EMVControl (DEB) VOIE[1902]: SendMessageAResp 1 bytes
+2020-06-02 18:30:33.595 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:30:33.595 EMVControl (INF) VOIE[1902]:     > CA001\02
+2020-06-02 18:30:35.532 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:35.533 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:37.497 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:37.498 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:39.437 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:39.438 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:41.402 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:41.403 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:42.392 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:30:42.393 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:30:43.367 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:43.377 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:45.312 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:45.313 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:47.252 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:47.252 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:49.217 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:49.218 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:51.157 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:51.157 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:53.122 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:53.122 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:55.087 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:55.087 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:57.027 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:57.027 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:30:58.397 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:30:58.398 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:30:58.992 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:30:58.992 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:00.931 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:00.932 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:02.896 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:02.897 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:04.841 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:04.842 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:06.806 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:06.807 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:08.746 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:08.747 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:10.701 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:10.702 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:12.641 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:12.642 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:14.396 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:31:14.397 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:31:14.616 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:14.617 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:16.506 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:16.509 EMVControl (INF) VOIE[1902]: 'A'<< 0040008902020060218303303006721000001101601
+2020-06-02 18:31:16.509 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:16.509 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:16.509 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:31:16.509 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:31:16.509 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:31:16.509 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:31:16.509 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:31:16.509 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:31:16.510 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:16.510 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:31:16.512 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:16.512 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:18.446 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:18.447 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:20.113 EMVControl (DEB) VOIE[1902]: ProcessTermMsgStatusEvent - event_id=930 alarm=-1: okay in_black_list=1
+2020-06-02 18:31:20.113 EMVControl (DEB) VOIE[1902]: CplStatus changed = false
+2020-06-02 18:31:20.113 EMVControl (WAR) VOIE[1902]: event transmission suppressed
+2020-06-02 18:31:20.411 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:20.412 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:22.351 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:22.356 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:24.316 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:24.316 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:26.261 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:26.261 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:28.226 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:28.226 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:30.171 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:30.172 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:30.396 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:31:30.397 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:31:32.111 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:32.111 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:34.075 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:34.076 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:36.016 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:36.016 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:37.980 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:37.981 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:39.945 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:39.946 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:41.885 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:41.886 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:43.850 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:43.851 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:45.790 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:45.791 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:46.396 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:31:46.396 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:31:47.755 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:47.756 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:49.695 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:49.696 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:51.660 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:51.661 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:53.600 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:53.601 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:54.665 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:54.668 EMVControl (INF) VOIE[1902]: 'A'<< 0040007602020060218315403006721000001101701
+2020-06-02 18:31:54.668 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:54.668 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:54.668 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:31:54.668 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:31:54.668 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:31:54.668 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:31:54.668 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:31:54.668 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:31:54.668 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.668 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:31:54.671 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:54.671 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:54.730 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:54.732 EMVControl (INF) VOIE[1902]: 'A'<< 0030007602020060218315403006721000001101701
+2020-06-02 18:31:54.732 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:54.732 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:54.732 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2021 from 0
+2020-06-02 18:31:54.732 EMVControl (DEB) VOIE[1902]: received an PayAttention request from 0 IDTP=2020060218315403006721000001101701 Amount=760
+2020-06-02 18:31:54.732 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183154)
+2020-06-02 18:31:54.732 EMVControl (ERR) VOIE[1902]: NFC reader not configured by VOIE !!!
+2020-06-02 18:31:54.732 EMVControl (DEB) VOIE[1902]: SendMessageAResp 1 bytes
+2020-06-02 18:31:54.733 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:54.733 EMVControl (INF) VOIE[1902]:     > CA001\02
+2020-06-02 18:31:54.795 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:54.798 EMVControl (INF) VOIE[1902]: 'A'<< 0040007602020060218315403006721000001101701
+2020-06-02 18:31:54.798 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:54.798 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:54.798 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:31:54.798 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:31:54.798 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:31:54.798 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:31:54.798 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:31:54.798 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:31:54.798 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.799 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:31:54.801 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:54.801 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:54.910 EMVControl (ERR) VOIE[1902]: RsProt: eStatus (11) rx_byte not ACK (05) retry (3)
+2020-06-02 18:31:54.985 EMVControl (ERR) VOIE[1902]: RsProt: eStatus (11) rx_byte not ACK (05) retry (3)
+2020-06-02 18:31:55.060 EMVControl (ERR) VOIE[1902]: RsProt: eStatus (11) rx_byte not ACK (05) retry (3)
+2020-06-02 18:31:55.185 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:55.188 EMVControl (INF) VOIE[1902]: 'A'<< 0040007602020060218315403006721000001101701
+2020-06-02 18:31:55.188 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:55.188 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:55.188 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:31:55.188 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:31:55.188 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:31:55.188 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:31:55.188 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:31:55.188 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:31:55.188 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.188 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:31:55.191 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:55.191 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:55.250 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:31:55.253 EMVControl (INF) VOIE[1902]: 'A'<< 0040007602020060218315403006721000001101701
+2020-06-02 18:31:55.253 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:31:55.253 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:31:55.253 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:31:55.253 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:31:55.253 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:31:55.253 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:31:55.253 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:31:55.253 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:31:55.253 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.253 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:31:55.256 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:55.256 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:31:57.190 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:57.191 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:31:59.130 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:31:59.131 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:01.095 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:01.096 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:02.395 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:32:02.396 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:32:03.035 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:03.035 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:05.000 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:05.000 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:06.945 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:06.945 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:08.910 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:08.910 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:10.849 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:10.850 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:12.814 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:12.815 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:14.754 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:14.755 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:16.719 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:16.729 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:18.395 EMVControl (DEB) VOIE[1902]: ClientSupervision::Connect try to connect to 10.103.82.30:64008
+2020-06-02 18:32:18.396 EMVControl (ERR) VOIE[1902]: ClientSupervision::OnEvent Deconnexion Client 14 (Error)
+2020-06-02 18:32:18.484 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:32:18.487 EMVControl (INF) VOIE[1902]: 'A'<< 0040002902020060218321803006721000001101801
+2020-06-02 18:32:18.487 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:32:18.487 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:32:18.487 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2022 from 0
+2020-06-02 18:32:18.488 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: DEACTIVATION_REQUEST - param=0x0
+2020-06-02 18:32:18.488 EMVControl (ERR) NfcEp[2700]: DoAbortRequest: state (Idle) - next state (Idle)
+2020-06-02 18:32:18.488 EMVControl (INF) NfcEp[2700]: EpIfMessageSend: cFct='02'
+2020-06-02 18:32:18.488 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_CLT_REQUEST - param=0x2
+2020-06-02 18:32:18.488 EMVControl (DEB) NfcEp[2700]: (DEBUG) Deactivate the EP...
+2020-06-02 18:32:18.488 EMVControl (DEB) NfcEp[2700]: Main thread: OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:32:18.488 EMVControl (DEB) NfcEp[2700]: OnFifoMessageReceived: EP_IF_MESSAGE_RECEIVED - param=0x2
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Deactivation done by the EP
+2020-06-02 18:32:18.490 EMVControl (ERR) NfcEp[2700]: DoAbortResponse: state (DoingAbortRequest) - next state (Idle)
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Thread S:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Thread D:OnFifoMessageReceived: NR_WF_STOP - param=0x0
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Thread D - Clear UI on STOP request
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Thread C3: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:32:18.490 EMVControl (DEB) NfcEp[2700]: Thread C2: OnFifoMessageReceived: NR_WF_STOP - param_ptr=0x0
+2020-06-02 18:32:18.549 EMVControl (DEB) VOIE[1902]: Receive msg A size=43
+2020-06-02 18:32:18.551 EMVControl (INF) VOIE[1902]: 'A'<< 0030002902020060218321803006721000001101801
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:32:18.552 EMVControl (INF) VOIE[1902]:     > CA001\00
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2021 from 0
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: received an PayAttention request from 0 IDTP=2020060218321803006721000001101801 Amount=290
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183218)
+2020-06-02 18:32:18.552 EMVControl (ERR) VOIE[1902]: NFC reader not configured by VOIE !!!
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: SendMessageAResp 1 bytes
+2020-06-02 18:32:18.552 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [A] - Len=5+1
+2020-06-02 18:32:18.552 EMVControl (INF) VOIE[1902]:     > CA001\02
+2020-06-02 18:32:20.116 EMVControl (DEB) VOIE[1902]: ProcessTermMsgStatusEvent - event_id=930 alarm=-1: okay in_black_list=1
+2020-06-02 18:32:20.116 EMVControl (DEB) VOIE[1902]: CplStatus changed = false
+2020-06-02 18:32:20.116 EMVControl (WAR) VOIE[1902]: event transmission suppressed
+2020-06-02 18:32:20.489 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:20.490 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:22.459 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:22.460 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:24.399 EMVControl (DEB) VOIE[1902]: Receive msg Z size=0
+2020-06-02 18:32:24.400 EMVControl (INF) VOIE[1902]: 'Z'<< 
+2020-06-02 18:32:24.989 EMVControl (DEB) VOIE[1902]: Receive msg B size=42
+2020-06-02 18:32:24.992 EMVControl (INF) VOIE[1902]: 'B'<< 0145330************22012018321282179400   
+2020-06-02 18:32:24.992 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2001 from 0
+2020-06-02 18:32:24.992 EMVControl (DEB) VOIE[1902]: received an AnalyzeBIN request
+2020-06-02 18:32:24.992 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183224)
+2020-06-02 18:32:24.992 EMVControl (DEB) VOIE[1902]: ProcessCtrlMsgAnalyseBinQuestion montant: 290#012idtp: "2020060218321803006721000001101801"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "************6622=2201201*************"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183224"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: montant: 290
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: idtp: "2020060218321803006721000001101801"
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: cinematique: ""
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: etat_lisibilite_carte: 0
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: piste_iso2: "************6622=2201201*************"
+2020-06-02 18:32:24.993 EMVControl (DEB) VOIE[1902]: xac_mode: 1
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: vehicle_class: 0
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: voie_src_id: 0
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: cfg_with_chip_module: false
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: chip_module_status: false
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: cfg_with_nfc_reader: false
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: nfc_reader_status: false
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: card_into_reader: true
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: date: "20200602"
+2020-06-02 18:32:24.995 EMVControl (DEB) VOIE[1902]: time: "183224"
+2020-06-02 18:32:24.996 EMVControl (DEB) VOIE[1902]: id_equipement: "030067213_161021009"
+2020-06-02 18:32:24.996 EMVControl (DEB) VOIE[1902]: hardware_version: "A"
+2020-06-02 18:32:25.001 EMVControl (DEB) VOIE[1902]: firmware_version: "04.05.04"
+2020-06-02 18:32:25.001 EMVControl (DEB) CORE[2897]: Received BIN_REQUEST from :VOIE
+2020-06-02 18:32:25.002 EMVControl (DEB) CORE[2897]: OnDoBinRequest - Received 155 bytes
+2020-06-02 18:32:25.002 EMVControl (INF) CORE[2897]: Adding PISTE
+2020-06-02 18:32:25.002 EMVControl (INF) CORE[2897]: Adding NFC
+2020-06-02 18:32:25.002 EMVControl (DEB) CORE[2897]: OnDoBinRequest - montant: 290#012idtp: "2020060218321803006721000001101801"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "************6622=2201201*************"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183224"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012xac_start_ts_sec: 1591115544#012xac_start_ts_us: 998674
+2020-06-02 18:32:25.002 EMVControl (DEB) CORE[2897]: Select thread received: BIN_REQUEST - param=0x0
+2020-06-02 18:32:25.002 EMVControl (DEB) CORE[2897]: OnDoSelectRequest 
+2020-06-02 18:32:25.002 EMVControl (DEB) SELECT[12942]: Received BIN_REQUEST from :CORE
+2020-06-02 18:32:25.002 EMVControl (DEB) SELECT[12942]: BIN_REQUEST received
+2020-06-02 18:32:25.002 EMVControl (DEB) SELECT[12942]: PAN (************6622)
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: ISO2 read using magstripe reader
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: will use Bins tree (/mnt/disk/TLP/T_EMETTEUR420)
+2020-06-02 18:32:25.008 EMVControl (INF) SELECT[12942]: Bins: Interval Algo => 1 row(s) found
+2020-06-02 18:32:25.008 EMVControl (INF) SELECT[12942]: sql> Select identifiant_plage, niveau_acceptation_banque, code_traitement_particulier,code_pays, longueur_numero_carte, code_reseau, type_de_carte, niveau_acceptation_piste_sesam, niveau_acceptation_cless_sesam, acceptation_si_aucune_da, timeout_da, controle_cle_luhn, debut_plage, fin_plage from T_EMETTEUR where rowid=67472
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: Pan is found (row 67472)
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: Found in Plage ID = 67472
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: Card type (CB) supported
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: Valid ISO2. Expiration date (2201) - Service code (201)
+2020-06-02 18:32:25.008 EMVControl (DEB) SELECT[12942]: SendResponseToCore
+2020-06-02 18:32:25.008 EMVControl (DEB) CORE[2897]: Received BIN_RESPONSE from :APP:SELECT:0000002723
+2020-06-02 18:32:25.008 EMVControl (DEB) CORE[2897]: OnDoBinResponse - Received 426 bytes
+2020-06-02 18:32:25.012 EMVControl (DEB) CORE[2897]: OnDoBinResponse - montant: 290#012idtp: "2020060218321803006721000001101801"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "************6622=2201201*************"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183224"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012xac_start_ts_sec: 1591115544#012xac_start_ts_us: 998674
+2020-06-02 18:32:25.012 EMVControl (DEB) CORE[2897]: Idle => Idle
+2020-06-02 18:32:25.013 EMVControl (DEB) VOIE[1902]: BIN_RESPONSE from :CORE 
+2020-06-02 18:32:25.013 EMVControl (DEB) VOIE[1902]: received an AnalyseBin Response montant: 290#012idtp: "2020060218321803006721000001101801"#012cinematique: ""#012etat_lisibilite_carte: 0#012piste_iso2: "************6622=2201201*************"#012xac_mode: 1#012vehicle_class: 0#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: true#012date: "20200602"#012time: "183224"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"#012active_apps {#012  name: "PISTE"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2702#012  version: "4.3.4 - 24th Feb.20"#012  supported_card: "CB"#012}#012active_apps {#012  name: "NFC"#012  status: APP_STATUS_ACTIVE#012  table_set_id: 2721#012  version: "4.3.2 - 15th Jan.20"#012  supported_card: "CB"#012  supported_tech: CLESS_TECH#012}#012expiration_date: "2201"#012service_code: "201"#012pan: "************6622"#012hash_pan: "360840DB369F9A38C403CF1FF08CAE90EE4717E25CCCC69C337989B823735A39"#012table_set_id_select: 2723#012truncated_pan: "XXXXXXXXXXXX6622"#012read_iso2: READ_SUCCESS#012read_chip: READ_NOT_PERFORMED#012read_cless: READ_NOT_PERFORMED#012iso2_result: 0#012processing_indicators {#012  card_rejected: false#012  record_tna: false#012  algo_exit_code: NONE#012}#012bin_infos {#012  id_plage: 67472#012  niveau_acceptation_banque: APPROVED#012  code_traitement: 0#012  code_pays: "FRA"#012  lg_num_carte: 16#012  code_reseau: "01"#012  type_carte: "CB"#012  niveau_acceptation_piste_sesam: APPROVED#012  acceptation_si_pas_da: APPROVED#012  timeout_da: 15#012  controle_cle_luhn: 0#012  niveau_acceptation_cless_sesam: APPROVED#012}#012xac_start_ts_sec: 1591115544#012xac_start_ts_us: 998674
+2020-06-02 18:32:25.013 EMVControl (INF) VOIE[1902]: AlgoExitCode = NONE(0)
+2020-06-02 18:32:25.013 EMVControl (INF) VOIE[1902]: Generating data_type=00 response
+2020-06-02 18:32:25.013 EMVControl (DEB) VOIE[1902]: SendMessageBResp 2 bytes
+2020-06-02 18:32:25.013 EMVControl (DEB) VOIE[1902]: TX >> C: Fct [B] - Len=5+2
+2020-06-02 18:32:25.013 EMVControl (INF) VOIE[1902]:     > CB00200
+2020-06-02 18:32:25.284 EMVControl (DEB) VOIE[1902]: Receive msg T size=87
+2020-06-02 18:32:25.288 EMVControl (INF) VOIE[1902]: 'T'<< 00029020200602183218030067210000011018011  MN0045330************22012018321282179400   
+2020-06-02 18:32:25.288 EMVControl (DEB) VOIE[1902]: [PN-RX] type 2003 from 0
+2020-06-02 18:32:25.288 EMVControl (DEB) VOIE[1902]: ProcessCtrlMsgDoPaymentQuestion state 2 DoPaymentQuestion=iso2_track: ***************************************************************************************************************************************0001101801"
+2020-06-02 18:32:25.289 EMVControl (DEB) VOIE[1902]: It's an ISO2 payment for AREA
+2020-06-02 18:32:25.289 EMVControl (DEB) VOIE[1902]: Xac date (20200602) - time (183225)
+2020-06-02 18:32:25.289 EMVControl (DEB) VOIE[1902]: ProcessCtrlMsgDoPaymentQuestion XacDetails=montant: 290#012idtp: "2020060218321803006721000001101801"#012cinematique: "MN"#012etat_lisibilite_carte: 0#012piste_iso2: "************6622=2201201*************"#012xac_mode: 0#012vehicle_class: 1#012voie_src_id: 0#012cfg_with_chip_module: false#012chip_module_status: false#012cfg_with_nfc_reader: false#012nfc_reader_status: false#012card_into_reader: false#012iso2_read_duration_ms: 0#012iso2_nb_relecture: 0#012date: "20200602"#012time: "183225"#012id_equipement: "030067213_161021009"#012hardware_version: "A"#012firmware_version: "04.05.04"
+2020-06-02 18:32:25.289 EMVControl (DEB) CORE[2897]: Received DO_PAYMENT_REQUEST from :VOIE
+2020-06-02 18:32:25.289 EMVControl (DEB) CORE[2897]: OnDoPayment - Received 163 bytes
+2020-06-02 18:32:25.289 EMVControl (DEB) CORE[2897]: Idle => ProcessingAppSelect
+2020-06-02 18:32:25.289 EMVControl (INF) CORE[2897]: Adding PISTE
+2020-06-02 18:32:25.289 EMVControl (INF) CORE[2897]: Adding NFC
+2020-06-02 18:32:25.294 EMVControl (DEB) CORE[2897]: Select thread received: SELECT_PAYMENT_APP_REQUEST - param=0x0
+2020-06-02 18:32:25.294 EMVControl (DEB) CORE[2897]: OnDoSelectRequest 
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: Received SELECT_PAYMENT_APP_REQUEST from :CORE
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: SELECT_PAYMENT_APP_REQUEST request received
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: PAN (************6622)
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: ISO2 read using magstripe reader
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: will use Bins tree (/mnt/disk/TLP/T_EMETTEUR420)
+2020-06-02 18:32:25.294 EMVControl (INF) SELECT[12942]: Bins: Interval Algo => 1 row(s) found
+2020-06-02 18:32:25.294 EMVControl (INF) SELECT[12942]: sql> Select identifiant_plage, niveau_acceptation_banque, code_traitement_particulier,code_pays, longueur_numero_carte, code_reseau, type_de_carte, niveau_acceptation_piste_sesam, niveau_acceptation_cless_sesam, acceptation_si_aucune_da, timeout_da, controle_cle_luhn, debut_plage, fin_plage from T_EMETTEUR where rowid=67472
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: Pan is found (row 67472)
+2020-06-02 18:32:25.294 EMVControl (DEB) SELECT[12942]: Found in Plage ID = 67472
+2020-06-02 18:32:25.299 EMVControl (DEB) SELECT[12942]: Card type (CB) supported
+2020-06-02 18:32:25.299 EMVControl (DEB) SELECT[12942]: Valid ISO2. Expiration date (2201) - Service code (201)
+2020-06-02 18:32:25.299 EMVControl (INF) SELECT[12942]: sql> Select mode_applicatif, technologie_preferentielle, technologie_piste, technologie_puce, technologie_sans_contact, duree_validite_max_carte, gestion_da_piste, seuil_classe_1_piste, seuil_classe_2_piste, seuil_classe_3_piste, seuil_classe_4_piste, seuil_classe_5_piste from T_APPLICATION_AUTORISEES where identifiant_plage = 67472 and mode_applicatif = 0
+2020-06-02 18:32:25.299 EMVControl (DEB) SELECT[12942]: app PISTE is active
+2020-06-02 18:32:25.299 EMVControl (DEB) SELECT[12942]: app NFC is active
+2020-06-02 18:32:25.299 EMVControl (INF) SELECT[12942]: tech pref='piste' - tech piste='allowed'
+2020-06-02 18:32:25.300 EMVControl (INF) SELECT[12942]: App PISTE selected
+2020-06-02 18:32:25.300 EMVControl (ERR) SELECT[12942]: ************6622 not found in T_BINS_PARTICULIERS.
+2020-06-02 18:32:25.300 EMVControl (DEB) SELECT[12942]: vehicle class (1) ==> xac amount (290) < floor limit (1500)
+2020-06-02 18:32:25.300 EMVControl (INF) SELECT[12942]: sql> SELECT * from T_CODE_SERVICE where identifiant_plage=67472 and code_service ='201'
+2020-06-02 18:32:25.300 EMVControl (INF) SELECT[12942]: (Id plage 67472, code service 201) found in T_CODE_SERVICE
+2020-06-02 18:32:25.305 EMVControl (DEB) SELECT[12942]: SendResponseToCore
+2020-06-02 18:32:25.306 EMVControl (DEB) CORE[2897]: Received SELECT_PAYMENT_APP_RESPONSE from :APP:SELECT:0000002723
+2020-06-02 18:32:25.306 EMVControl (DEB) CORE[2897]: OnDoSelectPaymentAppStatus - Received 503 bytes
+2020-06-02 18:32:25.306 EMVControl (DEB) CORE[2897]: Payment thread received: DO_PAYMENT_REQUEST - param=0x0
+2020-06-02 18:32:25.306 EMVControl (DEB) CORE[2897]: OnDoPayment
+2020-06-02 18:32:25.306 EMVControl (DEB) PISTE[27798]: Received DO_PAYMENT_REQUEST from :CORE
+2020-06-02 18:32:25.306 EMVControl (DEB) PISTE[27798]: Payment thread received: DO_PAYEMENT - param=0x0
+2020-06-02 18:32:25.306 EMVControl (DEB) PISTE[10183]: Received DO_PAYMENT_REQUEST from :CORE
+2020-06-02 18:32:25.306 EMVControl (DEB) PISTE[10183]: Payment thread received: DO_PAYEMENT - param=0x0
+2020-06-02 18:32:25.306 EMVControl (DEB) PISTE[10183]: OnDoPayment - Received 503 bytes
+2020-06-02 18:32:25.306 EMVControl (WAR) PISTE[10183]: Luhn key verification is disabled in T_EMETTEUR !!!
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: PAN not present in T13_BLACK
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: Payment thread received: OFFLINE_PROCESSING - param=0x0
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: OnDoOfflineProcessing
+2020-06-02 18:32:25.309 EMVControl (INF) PISTE[10183]: Transaction approved offline !
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: Payment thread received: SAVING_XAC - param=0x0
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: SetAlgoExitCodeAndRejectReason - xac APPROVED - algo exit code 901_OK_SANS_DA
+2020-06-02 18:32:25.309 EMVControl (DEB) PISTE[10183]: Elapsed time since start: 20
+2020-06-02 18:32:25.311 EMVControl (DEB) PISTE[27798]: OnDoPayment - Received 503 bytes
+2020-06-02 18:32:25.312 EMVControl (WAR) PISTE[27798]: Luhn key verification is disabled in T_EMETTEUR !!!
+2020-06-02 18:32:25.312 EMVControl (ERR) PISTE[27798]: CSqlDB::Select - sqlite3_prepare_v2 (21)
+2020-06-02 18:32:25.312 EMVControl (ERR) PISTE[27798]: SELECT * from T13_BLACK where Pan='4090100040902000'
+2020-06-02 18:32:25.312 EMVControl (ERR) PISTE[27798]:  => out of memory

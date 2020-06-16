@@ -177,7 +177,6 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan)
   fseek ( in, (currentPosition - sizeOriginalPan), SEEK_SET);
   fflush(in);
   
-  //fflush(in);
   fputs ( hiddingPan , in );
   fflush(in);
 

@@ -49,6 +49,7 @@
 #define MDBUFSIZE    512
 #define MAXPATH     2048
 #define BSIZE       4096
+//#define BSIZE       8192
 #define CARDTYPELEN   64
 #define CARDSIZE      17
 
@@ -171,12 +172,18 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan)
   printf("originalPan: %s VS positionOffset: %i", originalPan, (currentPosition - sizeOriginalPan));
 
 
-  fseek ( in , (currentPosition - sizeOriginalPan) , SEEK_SET );
+  int ftellBuffer = ftell(in);
+
+  fseek ( in, (currentPosition - sizeOriginalPan), SEEK_SET);
+  fflush(in);
+  
+  //fflush(in);
   fputs ( hiddingPan , in );
   fflush(in);
 
-  if(currentPosition > 475689)
-    exit(1);
+  fseek( in, ftellBuffer, SEEK_SET);
+  fflush(in);
+
 }
 
 
@@ -549,18 +556,24 @@ static int ccsrch(const char *filename)
 
   currentPosition = 0;
 
+  int cursorBuffer = 0;
+
+
+
+
   initialize_buffer();
 
   while (limit_exceeded == 0) {
     
     memset(&ccsrch_buf, '\0', BSIZE);
     
-    printf("\n Avant fread: %i \n", cnt);
+    //printf("\n Avant fread: %i \n", cnt);
 
     cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
-    fflush(in);
+    cursorBuffer = ftell(in);
+
     
-    printf("\n Apr�s fread: %i \n", cnt);
+    //printf("\n Apr�s fread: %i \n", cnt);
 
 
     if (cnt <= 0)
@@ -573,7 +586,7 @@ static int ccsrch(const char *filename)
 
     for (ccsrch_index=0; ccsrch_index<cnt && limit_exceeded==0; ccsrch_index++) {
 
-
+      currentPosition++;
 
       /* check to see if our data is 0...9 (based on ACSII value) */
       if (isdigit(ccsrch_buf[ccsrch_index])) {

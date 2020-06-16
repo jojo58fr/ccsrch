@@ -1,5 +1,6 @@
 # CCSRCH-ADVANCED
 
+<img src="./doc/images/overview/PT%20hero%20image.png"/>
 
 CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 

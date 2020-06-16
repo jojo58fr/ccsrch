@@ -41,6 +41,7 @@ Usage: ./ccsrch <options> <start path>
     -w             Check for card matches wrapped across lines.
     -h             Usage information
     -x             Hide PAN values by XXXX********XXXX format (* is hidden)
+	-X             Replace PAN values by censor it using asterisk (*) on source file
 ```
 
 **Examples:**
@@ -173,9 +174,10 @@ CURRENTLY IN DEVELOPMENT
 
 ### Revisions
 
-1.0.10 (Resuming the project) - In progress
+1.0.10 (Resuming the project) - 16/06/2020 Preview
 
-* Add -x option to hide pan with a specific format
+* Add -x option to hide pan with a specific format (XXXX********XXXX where X are visible numbers)
+* Add -X option to replace PAN values by censor it using asterisk (*) on source file
 
 1.0.9 (Original version from https://github.com/adamcaudill/ccsrch/commits/master)
 **-> Contributors : John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M**

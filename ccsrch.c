@@ -6,7 +6,7 @@
  *        (c) 2007 Mike Beekey <zaphod2718@yahoo.com>
  * \version $Revision: 1.0.10 DEV
  * \date $Date: 2020/06/12 07:55:12
- * 
+ * \link https://github.com/jojo58fr/ccsrch-adv
  * All rights reserved. See COPYING for more informations.
  *
  * This program is free software; you can redistribute it and/or modify it under
@@ -44,7 +44,7 @@
   #define SIGQUIT 3
 #endif
 
-#define PROG_VER "ccsrch 1.0.10 DEV (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
+#define PROG_VER "CCSRCH-ADVANCE 1.0.10 PREVIEW (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
 
 #define MDBUFSIZE    512
 #define MAXPATH     2048
@@ -67,6 +67,8 @@ static long   currfile_mtime        = 0;
 static long   currfile_ctime        = 0;
 static time_t init_time             = 0;
 static int    cardbuf[CARDSIZE];
+
+//Booleans status
 static int    print_byte_offset     = 0;
 static int    print_epoch_time      = 0;
 static int    print_julian_time     = 0;
@@ -82,11 +84,15 @@ static int    limit_file_results    = 0;
 static int    newstatus             = 0;
 static int    status_lastupdate     = 0;
 static int    status_msglength      = 0;
+
+//Booleans status - Options
 static int    mask_card_number      = 0;
 static int    limit_ascii           = 0;
 static int    ignore_count          = 0;
 static int    wrap                  = 0;
-static int	  hiddenPan			        = 0;
+static int	  hiddenPan			        = 0; //Hide pan to XXXX*****XXXX format
+static int    hiddenPanFull         = 0; //Hide pan with only asterisks (********)
+
 
 static char   *inbuf                = NULL; //Input File Path
 static FILE   *in                   = NULL; //File Reading/Writing Stream
@@ -158,18 +164,24 @@ static void hide_pan(const char *originalPan, int sizeOriginalPan)
   char hiddingPan[CARDSIZE] = "";
   for(int i = 0; i < sizeOriginalPan; i++)
   {
-    if( (i <= 4 || i >= (sizeOriginalPan - 4)) )
+    if(hiddenPanFull)
     {
-      hiddingPan[i] = originalPan[i];
+      hiddingPan[i] = '*'; //Hide completely PAN
     }
     else
     {
-        hiddingPan[i] = '*';
+      //Partial hide PAN
+      if( (i <= 4 || i >= (sizeOriginalPan - 4)) )
+      {
+        hiddingPan[i] = originalPan[i];
+      }
+      else
+      {
+          hiddingPan[i] = '*';
+      }
     }
-  }
 
-  //printf("HidingPan: %s VS OriginalPan: %s", hiddingPan, originalPan);
-  printf("originalPan: %s VS positionOffset: %i", originalPan, (currentPosition - sizeOriginalPan));
+  }
 
 
   int ftellBuffer = ftell(in);
@@ -221,8 +233,7 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
   if (mask_card_number)
     mask_pan(nbuf);
 
-  //printf("\n%s\n", nbuf);
-  if (hiddenPan)
+  if (hiddenPan || hiddenPanFull)
     hide_pan(nbuf, cardlen);
 
   /* MB we need to figure out how to update the count and spit out the final
@@ -296,7 +307,9 @@ static void check_mastercard_16(long offset)
   if ((vnum > 50) && (vnum < 56))
   {
         print_result("MASTERCARD", 16, offset);
-        printf("\n%s\n", num2buf);
+        #ifdef DEBUG
+          printf("\n%s\n", num2buf); // -- For debug purposes
+        #endif
   }
 
   snprintf(num2buf, sizeof(num2buf), "%d%d%d%d%d%d", cardbuf[0], cardbuf[1], cardbuf[2], cardbuf[3], cardbuf[4], cardbuf[5]);
@@ -304,8 +317,9 @@ static void check_mastercard_16(long offset)
   if ((vnum >= 222100) && (vnum <= 272099))
   {
     print_result("MASTERCARD", 16, offset);
-    printf("\n%s\n", num2buf);
-
+    #ifdef DEBUG
+      printf("\n%s\n", num2buf); // -- For debug purposes
+    #endif
   }
 }
 
@@ -489,7 +503,6 @@ static void update_status(const char *filename, int position)
   char       msgbuffer[MDBUFSIZE];
   char      *fn;
 
-  /* if ((int)time(NULL) > status_lastupdate) */
   if (position % (1024 * 1024) == 0 || (int)time(NULL) > status_lastupdate) {
     printf("%*s\r", status_msglength, " ");
 
@@ -566,19 +579,13 @@ static int ccsrch(const char *filename)
     
     memset(&ccsrch_buf, '\0', BSIZE);
     
-    //printf("\n Avant fread: %i \n", cnt);
-
-    cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
-    cursorBuffer = ftell(in);
-
-    
-    //printf("\n Apr�s fread: %i \n", cnt);
+    cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in); //Set values into buffer
+    cursorBuffer = ftell(in); //get position of cursor after buffer
 
 
     if (cnt <= 0)
       break;
 
-    //printf("\n Aie: %i \n", cnt);
 
     if (limit_ascii && !is_ascii_buf(ccsrch_buf, cnt))
       break;
@@ -612,9 +619,6 @@ static int ccsrch(const char *filename)
         counter      = 0;
         ignore_count = 0;
       }
-
-      //printf("\n %i \n", cnt);//ftell(in));
-      //currentPosition = ftell(in);
 
       if (((counter > 12) && (counter < CARDSIZE)) && (check)) {
         luhn_check(counter, byte_offset-counter);
@@ -871,25 +875,25 @@ static void usage(const char *progname)
   printf("%s\n", PROG_VER);
   printf("Usage: %s <options> <start path>\n", progname);
   printf("  where <options> are:\n");
-  printf("    -a\t\t   Limit to ascii files.\n");
-  printf("    -b\t\t   Add the byte offset into the file of the number\n");
-  printf("    -e\t\t   Include the Modify Access and Create times in terms \n\t\t   of seconds since the epoch\n");
-  printf("    -f\t\t   Only print the filename w/ potential PAN data\n");
+  printf("    -a\t\t         Limit to ascii files.\n");
+  printf("    -b\t\t         Add the byte offset into the file of the number\n");
+  printf("    -e\t\t         Include the Modify Access and Create times in terms \n\t\t   of seconds since the epoch\n");
+  printf("    -f\t\t         Only print the filename w/ potential PAN data\n");
   printf("    -i <filename>  Ignore credit card numbers in this list (test cards)\n");
-  printf("    -j\t\t   Include the Modify Access and Create times in terms \n\t\t   of normal date/time\n");
+  printf("    -j\t\t         Include the Modify Access and Create times in terms \n\t\t   of normal date/time\n");
   printf("    -o <filename>  Output the data to the file <filename> vs. standard out\n");
-  printf("    -t <1 or 2>\t   Check if the pattern follows either a Track 1 \n\t\t   or 2 format\n");
-  printf("    -T\t\t   Check for both Track 1 and Track 2 patterns\n");
-  printf("    -c\t\t   Show a count of hits per file (only when using -o)\n");
-  printf("    -s\t\t   Show live status information (only when using -o)\n");
-  printf("    -l N\t   Limits the number of results from a single file before going\n\t\t   on to the next file.\n");
+  printf("    -t <1 or 2>\t  Check if the pattern follows either a Track 1 \n\t\t   or 2 format\n");
+  printf("    -T\t\t         Check for both Track 1 and Track 2 patterns\n");
+  printf("    -c\t\t         Show a count of hits per file (only when using -o)\n");
+  printf("    -s\t\t         Show live status information (only when using -o)\n");
+  printf("    -l N\t         Limits the number of results from a single file before going\n\t\t   on to the next file.\n");
   printf("    -n <list>      File extensions to exclude (i.e .dll,.exe)\n");
-  printf("    -m\t\t   Mask the PAN number.\n");
-  printf("    -w\t\t   Check for card matches wrapped across lines.\n");
-  printf("NEW -x\t\t   Hide PAN values by XXXX********XXXX format (* is hidden) on source file\n\n");
-  printf("NEW -xa\t\t   Replace PAN values by censor it using asterisk (*) on source file\n\n");
-  printf("    -h\t\t   Usage information\n\n");
-  printf("See https://github.com/adamcaudill/ccsrch for more information.\n\n");
+  printf("    -m\t\t         Mask the PAN number.\n");
+  printf("    -w\t\t         Check for card matches wrapped across lines.\n");
+  printf("NEW -x\t\t         Hide PAN values by XXXX********XXXX format (* is hidden) on source file\n\n");
+  printf("NEW -X\t\t         Replace PAN values by censor it using asterisk (*) on source file\n\n");
+  printf("    -h\t\t         Usage information\n\n");
+  printf("See https://github.com/jojo58fr/ccsrch-adv for more information.\n\n");
   exit(0);
 }
 
@@ -964,7 +968,7 @@ int main(int argc, char *argv[])
   if (argc < 2)
     usage(argv[0]);
 
-  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw:x")) != -1) {
+  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw:xX")) != -1) {
       switch (c) {
         case 'a':
           limit_ascii = 1;
@@ -1029,6 +1033,9 @@ int main(int argc, char *argv[])
         	break;
 		    case 'x':
         	hiddenPan = 1;
+        	break;
+		    case 'X':
+        	hiddenPanFull = 1;
         	break;
         case 'h':
         default:

@@ -1,6 +1,6 @@
 @echo off
 REM #
-REM # ccsrch (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
+REM # ccsrch (c) 2020 Miens Joachim <contact@joachim-miens.com>
 REM # All rights reserved
 REM #
 REM #

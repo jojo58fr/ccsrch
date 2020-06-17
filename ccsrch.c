@@ -44,7 +44,7 @@
   #define SIGQUIT 3
 #endif
 
-#define PROG_VER "CCSRCH-ADVANCE 1.0.10 PREVIEW (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
+#define PROG_VER "CCSRCH-ADVANCE 1.0.10 (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
 
 #define MDBUFSIZE    512
 #define MAXPATH     2048

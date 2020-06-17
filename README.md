@@ -175,7 +175,10 @@ CURRENTLY IN DEVELOPMENT
 
 ### Revisions
 
-1.0.10 (Resuming the project) - 16/06/2020 Preview
+Next : 1.1
+
+
+1.0.10 (Resuming the project) - 17/06/2020
 
 * Add -x option to hide pan with a specific format (XXXX********XXXX where X are visible numbers)
 * Add -X option to replace PAN values by censor it using asterisk (*) on source file

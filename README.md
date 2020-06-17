@@ -171,7 +171,7 @@ Install [MinGW](http://www.mingw.org/) ([installer](http://sourceforge.net/proje
 
 ### <a id="downloads"></a>Downloads
 
-CURRENTLY IN DEVELOPMENT
+[1.0.10 - Windows executable](https://github.com/jojo58fr/ccsrch-adv/releases/download/1.0.10/win-ccsrch.exe)
 
 ### Revisions
 

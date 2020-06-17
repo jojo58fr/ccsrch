@@ -1,8 +1,8 @@
-# CCSRCH-ADV
+# CCSRCH-ADVANCED
 
 <img src="./doc/images/overview/PT%20hero%20image.png"/>
 
-CCSRCH-ADV or CCSRCH-ADVANCE is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
+CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 
 ### Copyright
 
@@ -42,6 +42,7 @@ Usage: ./ccsrch <options> <start path>
     -w             Check for card matches wrapped across lines.
     -h             Usage information
     -x             Hide PAN values by XXXX********XXXX format (* is hidden)
+	-X             Replace PAN values by censor it using asterisk (*) on source file
 ```
 
 **Examples:**
@@ -65,6 +66,10 @@ Search for credit card data and check for Track 2 data formats with output to fi
 Search for all track data types in ascii only files and ignore known test card numbers:
 
 `ccsrch -T -i ignore.list -a ./`
+
+Search for credit card data and hide pan in the source file for security issues (Data masking and desensitization (DM)).
+
+`ccsrch –o mycard.log -x c:\storage`
 
 ### Output
 
@@ -170,9 +175,13 @@ CURRENTLY IN DEVELOPMENT
 
 ### Revisions
 
-1.0.10 (Resuming the project) - In progress
+Next : 1.1
 
-* Add -x option to hide pan with a specific format
+
+1.0.10 (Resuming the project) - 17/06/2020
+
+* Add -x option to hide pan with a specific format (XXXX********XXXX where X are visible numbers)
+* Add -X option to replace PAN values by censor it using asterisk (*) on source file
 
 1.0.9 (Original version from https://github.com/adamcaudill/ccsrch/commits/master)
 **-> Contributors : John A, Kyley S, Anand S, Chris L, Mitch A, Bill L, Phoram M**

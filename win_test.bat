@@ -1,6 +1,6 @@
 @echo off
 REM #
-REM # ccsrch (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
+REM # ccsrch (c) 2020 Miens Joachim <contact@joachim-miens.com>
 REM # All rights reserved
 REM #
 REM #
@@ -22,9 +22,10 @@ REM #
 REM # This is a test script that will build, and run ccsrch; if you have the testdata.txt
 REM # file in place, it will pick that up so that you can see the reults.
 REM #
-mingw32-make clean
-mingw32-make all
-REM ccsrch -b -T ./
-ccsrch -b -e -T c:\ -c -n .dll,.exe,.dng,.png,.nef,.bmp,.pdf,.wmv,.rtf,.msi,.zip,.7z,.tiff,.tif,.cab,.psd,.jpg,.gif,.jar -o out.txt
-REM ccsrch -b -e -T C:\ -c -l 4 -n .dll,.exe -o NUL
+.\build-ccsrch.cmd
+
+@echo on
+
+.\ccsrch.exe .\log.txt -x .\tmp\
+
 pause

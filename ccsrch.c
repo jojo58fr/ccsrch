@@ -1,8 +1,13 @@
-/*
- * ccsrch (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
+/**
+ * \ingroup ccsrch
+ * \brief CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information.
+ * \author ccsrch (c) 2020 Joachim Miens <contact@joachim-miens.com>
+ *        (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>
  *        (c) 2007 Mike Beekey <zaphod2718@yahoo.com>
- *
- * All rights reserved.
+ * \version $Revision: 1.0.10 DEV
+ * \date $Date: 2020/06/12 07:55:12
+ * \link https://github.com/jojo58fr/ccsrch-adv
+ * All rights reserved. See COPYING for more informations.
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free
@@ -39,53 +44,75 @@
   #define SIGQUIT 3
 #endif
 
-#define PROG_VER "ccsrch 1.0.9 (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
+#define PROG_VER "CCSRCH-ADVANCE 1.0.10 (c) 2020 Joachim Miens <contact@joachim-miens.com>\n             (c) 2012-2016 Adam Caudill <adam@adamcaudill.com>\n             (c) 2007 Mike Beekey <zaphod2718@yahoo.com>"
 
 #define MDBUFSIZE    512
 #define MAXPATH     2048
 #define BSIZE       4096
+//#define BSIZE       8192
 #define CARDTYPELEN   64
 #define CARDSIZE      17
 
 static char   ccsrch_buf[BSIZE];
 static char   lastfilename[MAXPATH];
 static char  *exclude_extensions;
-static char  *logfilename          = NULL;
-static const char  *currfilename   = NULL;
-static char  *ignore               = NULL;
-static FILE  *logfilefd            = NULL;
-static long   total_count          = 0;
-static long   file_count           = 0;
-static long   currfile_atime       = 0;
-static long   currfile_mtime       = 0;
-static long   currfile_ctime       = 0;
-static time_t init_time            = 0;
+static char  *logfilename           = NULL;
+static const char  *currfilename    = NULL;
+static char  *ignore                = NULL;
+static FILE  *logfilefd             = NULL;
+static long   total_count           = 0;
+static long   file_count            = 0;
+static long   currfile_atime        = 0;
+static long   currfile_mtime        = 0;
+static long   currfile_ctime        = 0;
+static time_t init_time             = 0;
 static int    cardbuf[CARDSIZE];
-static int    print_byte_offset    = 0;
-static int    print_epoch_time     = 0;
-static int    print_julian_time    = 0;
-static int    print_filename_only  = 0;
-static int    print_file_hit_count = 0;
-static int    ccsrch_index         = 0;
-static int    tracksrch            = 0;
-static int    tracktype1           = 0;
-static int    tracktype2           = 0;
-static int    trackdatacount       = 0;
-static int    file_hit_count       = 0;
-static int    limit_file_results   = 0;
-static int    newstatus            = 0;
-static int    status_lastupdate    = 0;
-static int    status_msglength     = 0;
-static int    mask_card_number     = 0;
-static int    limit_ascii          = 0;
-static int    ignore_count         = 0;
-static int    wrap                 = 0;
 
+//Booleans status
+static int    print_byte_offset     = 0;
+static int    print_epoch_time      = 0;
+static int    print_julian_time     = 0;
+static int    print_filename_only   = 0;
+static int    print_file_hit_count  = 0;
+static int    ccsrch_index          = 0;
+static int    tracksrch             = 0;
+static int    tracktype1            = 0;
+static int    tracktype2            = 0;
+static int    trackdatacount        = 0;
+static int    file_hit_count        = 0;
+static int    limit_file_results    = 0;
+static int    newstatus             = 0;
+static int    status_lastupdate     = 0;
+static int    status_msglength      = 0;
+
+//Booleans status - Options
+static int    mask_card_number      = 0;
+static int    limit_ascii           = 0;
+static int    ignore_count          = 0;
+static int    wrap                  = 0;
+static int	  hiddenPan			        = 0; //Hide pan to XXXX*****XXXX format
+static int    hiddenPanFull         = 0; //Hide pan with only asterisks (********)
+
+
+static char   *inbuf                = NULL; //Input File Path
+static FILE   *in                   = NULL; //File Reading/Writing Stream
+
+static unsigned long    currentPosition       = 0;
+
+/** 
+ * \brief Initialize size of cardbuf at initialize.-+-
+ * \return void
+  */
 static void initialize_buffer()
 {
   memset(cardbuf, 0, CARDSIZE);
 }
 
+/** 
+  * \brief Mask the PAN number in output logs
+  * \param char *s: char that contains PAN numbers
+  * \return void
+  */
 static void mask_pan(char *s)
 {
   /* Make the PAN number; probably a better way to do this */
@@ -129,6 +156,49 @@ static int track2_srch(int cardlen)
   }
 }
 
+
+//Hide pan function : Allow to write in original file to hide pan values
+static void hide_pan(const char *originalPan, int sizeOriginalPan)
+{
+  /* HIDING PAN */
+  char hiddingPan[CARDSIZE] = "";
+  for(int i = 0; i < sizeOriginalPan; i++)
+  {
+    if(hiddenPanFull)
+    {
+      hiddingPan[i] = '*'; //Hide completely PAN
+    }
+    else
+    {
+      //Partial hide PAN
+      if( (i <= 4 || i >= (sizeOriginalPan - 4)) )
+      {
+        hiddingPan[i] = originalPan[i];
+      }
+      else
+      {
+          hiddingPan[i] = '*';
+      }
+    }
+
+  }
+
+
+  int ftellBuffer = ftell(in);
+
+  fseek ( in, (currentPosition - sizeOriginalPan), SEEK_SET);
+  fflush(in);
+  
+  fputs ( hiddingPan , in );
+  fflush(in);
+
+  fseek( in, ftellBuffer, SEEK_SET);
+  fflush(in);
+
+}
+
+
+
 static void print_result(const char *cardname, int cardlen, long byte_offset)
 {
   int		i;
@@ -163,6 +233,9 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
   if (mask_card_number)
     mask_pan(nbuf);
 
+  if (hiddenPan || hiddenPanFull)
+    hide_pan(nbuf, cardlen);
+
   /* MB we need to figure out how to update the count and spit out the final
   filename with the count.  ensure that it gets flushed out on the last match
   if you are doing a diff between previous filename and new filename */
@@ -170,6 +243,7 @@ static void print_result(const char *cardname, int cardlen, long byte_offset)
   if (print_filename_only) {
     snprintf(basebuf, MDBUFSIZE, "%s", currfilename);
   } else {
+    //Print elements to card : Current filename, card name, content of PAN
     snprintf(basebuf, MDBUFSIZE, "%s\t%s\t%s", currfilename, cardname, nbuf);
   }
 
@@ -231,12 +305,22 @@ static void check_mastercard_16(long offset)
   snprintf(num2buf, 3, "%d%d", cardbuf[0], cardbuf[1]);
   vnum = atoi(num2buf);
   if ((vnum > 50) && (vnum < 56))
-    print_result("MASTERCARD", 16, offset);
+  {
+        print_result("MASTERCARD", 16, offset);
+        #ifdef DEBUG
+          printf("\n%s\n", num2buf); // -- For debug purposes
+        #endif
+  }
 
   snprintf(num2buf, sizeof(num2buf), "%d%d%d%d%d%d", cardbuf[0], cardbuf[1], cardbuf[2], cardbuf[3], cardbuf[4], cardbuf[5]);
   vnum = atoi(num2buf);
   if ((vnum >= 222100) && (vnum <= 272099))
+  {
     print_result("MASTERCARD", 16, offset);
+    #ifdef DEBUG
+      printf("\n%s\n", num2buf); // -- For debug purposes
+    #endif
+  }
 }
 
 static void check_visa_16(long offset)
@@ -331,6 +415,11 @@ static void check_diners_club_cb_14(long offset)
 
 static int process_prefix(int len, long offset)
 {
+  #ifdef DEBUG
+    printf("Len: %i\n"        , len);
+    printf("Offset: %ld\n"    , offset);
+  #endif
+
   switch (len) {
     case 16:
       check_mastercard_16(offset);
@@ -414,7 +503,6 @@ static void update_status(const char *filename, int position)
   char       msgbuffer[MDBUFSIZE];
   char      *fn;
 
-  /* if ((int)time(NULL) > status_lastupdate) */
   if (position % (1024 * 1024) == 0 || (int)time(NULL) > status_lastupdate) {
     printf("%*s\r", status_msglength, " ");
 
@@ -442,9 +530,10 @@ static void update_status(const char *filename, int position)
   }
 }
 
+//Main operation : Reading file, detect number and check if is a card by using luhn algorithm.
 static int ccsrch(const char *filename)
 {
-  FILE  *in            = NULL;
+
   int   cnt            = 0;
   long  byte_offset    = 1;
   int   k              = 0;
@@ -457,10 +546,12 @@ static int ccsrch(const char *filename)
   printf("Processing file %s\n",filename);
 #endif
 
+  //readFile(filename);
+
   memset(&lastfilename,'\0',MAXPATH);
   ccsrch_index = 0;
   errno        = 0;
-  in = fopen(filename, "rb");
+  in = fopen(filename, "rb+");//"rb");
   if (in == NULL) {
     if (errno==13) {
       fprintf(stderr, "ccsrch: Unable to open file %s for reading; Permission Denied\n", filename);
@@ -469,39 +560,62 @@ static int ccsrch(const char *filename)
     }
     return -1;
   }
+
   currfilename = filename;
   byte_offset  = 1;
   ignore_count = 0;
   file_count++;
 
+  currentPosition = 0;
+
+  int cursorBuffer = 0;
+
+
+
+
   initialize_buffer();
 
   while (limit_exceeded == 0) {
+    
     memset(&ccsrch_buf, '\0', BSIZE);
-    cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in);
+    
+    cnt = fread(&ccsrch_buf, 1, BSIZE - 1, in); //Set values into buffer
+    cursorBuffer = ftell(in); //get position of cursor after buffer
+
+
     if (cnt <= 0)
       break;
+
 
     if (limit_ascii && !is_ascii_buf(ccsrch_buf, cnt))
       break;
 
     for (ccsrch_index=0; ccsrch_index<cnt && limit_exceeded==0; ccsrch_index++) {
+
+      currentPosition++;
+
       /* check to see if our data is 0...9 (based on ACSII value) */
       if (isdigit(ccsrch_buf[ccsrch_index])) {
+        
         check = 1;
         cardbuf[counter] = ((int)ccsrch_buf[ccsrch_index])-'0';
         counter++;
+
       } else if ((ccsrch_buf[ccsrch_index] == 0) || (wrap && ccsrch_buf[ccsrch_index] == '\r') ||
       	   (wrap && ccsrch_buf[ccsrch_index] == '\n') || (ccsrch_buf[ccsrch_index] == '-')) {
+        
         /*
          * we consider dashes, nulls, new lines, and carriage
          * returns to be noise, so ingore those
          */
          ignore_count += 1;
         check = 0;
+      
       } else {
+        
         check = 0;
         initialize_buffer();
+        
         counter      = 0;
         ignore_count = 0;
       }
@@ -513,10 +627,10 @@ static int ccsrch(const char *filename)
           cardbuf[k] = cardbuf[k + 1];
         }
         cardbuf[k] = -1;
-        luhn_check(13,byte_offset-13);
-        luhn_check(14,byte_offset-14);
-        luhn_check(15,byte_offset-15);
-        luhn_check(16,byte_offset-16);
+        luhn_check(13, byte_offset-13);
+        luhn_check(14, byte_offset-14);
+        luhn_check(15, byte_offset-15);
+        luhn_check(16, byte_offset-16);
         counter--;
       }
       byte_offset++;
@@ -593,9 +707,9 @@ static int get_file_stat(const char *inputfile, struct stat *fileattr)
     free(tmp2buf);
     return -1;
   }
-  currfile_atime=fileattr->st_atime;
-  currfile_mtime=fileattr->st_mtime;
-  currfile_ctime=fileattr->st_ctime;
+  currfile_atime = fileattr->st_atime;
+  currfile_mtime = fileattr->st_mtime;
+  currfile_ctime = fileattr->st_ctime;
   free(tmp2buf);
   return 0;
 }
@@ -761,23 +875,25 @@ static void usage(const char *progname)
   printf("%s\n", PROG_VER);
   printf("Usage: %s <options> <start path>\n", progname);
   printf("  where <options> are:\n");
-  printf("    -a\t\t   Limit to ascii files.\n");
-  printf("    -b\t\t   Add the byte offset into the file of the number\n");
-  printf("    -e\t\t   Include the Modify Access and Create times in terms \n\t\t   of seconds since the epoch\n");
-  printf("    -f\t\t   Only print the filename w/ potential PAN data\n");
+  printf("    -a\t\t         Limit to ascii files.\n");
+  printf("    -b\t\t         Add the byte offset into the file of the number\n");
+  printf("    -e\t\t         Include the Modify Access and Create times in terms \n\t\t   of seconds since the epoch\n");
+  printf("    -f\t\t         Only print the filename w/ potential PAN data\n");
   printf("    -i <filename>  Ignore credit card numbers in this list (test cards)\n");
-  printf("    -j\t\t   Include the Modify Access and Create times in terms \n\t\t   of normal date/time\n");
+  printf("    -j\t\t         Include the Modify Access and Create times in terms \n\t\t   of normal date/time\n");
   printf("    -o <filename>  Output the data to the file <filename> vs. standard out\n");
-  printf("    -t <1 or 2>\t   Check if the pattern follows either a Track 1 \n\t\t   or 2 format\n");
-  printf("    -T\t\t   Check for both Track 1 and Track 2 patterns\n");
-  printf("    -c\t\t   Show a count of hits per file (only when using -o)\n");
-  printf("    -s\t\t   Show live status information (only when using -o)\n");
-  printf("    -l N\t   Limits the number of results from a single file before going\n\t\t   on to the next file.\n");
+  printf("    -t <1 or 2>\t  Check if the pattern follows either a Track 1 \n\t\t   or 2 format\n");
+  printf("    -T\t\t         Check for both Track 1 and Track 2 patterns\n");
+  printf("    -c\t\t         Show a count of hits per file (only when using -o)\n");
+  printf("    -s\t\t         Show live status information (only when using -o)\n");
+  printf("    -l N\t         Limits the number of results from a single file before going\n\t\t   on to the next file.\n");
   printf("    -n <list>      File extensions to exclude (i.e .dll,.exe)\n");
-  printf("    -m\t\t   Mask the PAN number.\n");
-  printf("    -w\t\t   Check for card matches wrapped across lines.\n");
-  printf("    -h\t\t   Usage information\n\n");
-  printf("See https://github.com/adamcaudill/ccsrch for more information.\n\n");
+  printf("    -m\t\t         Mask the PAN number.\n");
+  printf("    -w\t\t         Check for card matches wrapped across lines.\n");
+  printf("NEW -x\t\t         Hide PAN values by XXXX********XXXX format (* is hidden) on source file\n\n");
+  printf("NEW -X\t\t         Replace PAN values by censor it using asterisk (*) on source file\n\n");
+  printf("    -h\t\t         Usage information\n\n");
+  printf("See https://github.com/jojo58fr/ccsrch-adv for more information.\n\n");
   exit(0);
 }
 
@@ -841,7 +957,7 @@ int main(int argc, char *argv[])
 {
   struct stat	ffstat;
   char       *inputstr      = NULL;
-  char       *inbuf         = NULL;
+  //char       *inbuf         = NULL; //Input File Path
   char       *tracktype_str = NULL;
   char        tmpbuf[BSIZE];
   int         err            = 0;
@@ -852,7 +968,7 @@ int main(int argc, char *argv[])
   if (argc < 2)
     usage(argv[0]);
 
-  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw")) != -1) {
+  while ((c = getopt(argc, argv,"abefi:jt:To:cml:n:sw:xX")) != -1) {
       switch (c) {
         case 'a':
           limit_ascii = 1;
@@ -914,6 +1030,12 @@ int main(int argc, char *argv[])
         	break;
         case 'w':
         	wrap = 1;
+        	break;
+		    case 'x':
+        	hiddenPan = 1;
+        	break;
+		    case 'X':
+        	hiddenPanFull = 1;
         	break;
         case 'h':
         default:

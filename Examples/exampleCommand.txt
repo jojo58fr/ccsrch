@@ -1,0 +1,1 @@
+.\ccsrch.exe -o [log-path] -x  [Folder path (files)]

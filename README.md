@@ -2,6 +2,8 @@
 
 <img src="./doc/images/overview/PT%20hero%20image.png"/>
 
+[:sparkles: Get Started](https://github.com/jojo58fr/ccsrch-adv/wiki/Setting-up-a-Windows-environment-with-VS-Code)   |   [Downloading & Release notes][github-release-link]   |   [Documentation](https://github.com/jojo58fr/ccsrch-adv/wiki) | [Known issues](#known-issues)
+
 CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 
 ### Copyright

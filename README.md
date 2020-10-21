@@ -2,7 +2,7 @@
 
 <img src="./doc/images/overview/PT%20hero%20image.png"/>
 
-[:sparkles: Get Started](https://github.com/jojo58fr/ccsrch-adv/wiki/Getting-started-with-ccsrch-advance#how-to-download-and-use-ccsrch-advance)   |   [:computer: Downloading & Release notes](https://github.com/jojo58fr/ccsrch-adv/releases)   |   [:pushpin: Documentation](https://github.com/jojo58fr/ccsrch-adv/wiki) | [:warning: Known issues](#known-issues)| [:bug: Report bugs](https://github.com/jojo58fr/ccsrch-adv/issues)
+[:sparkles: Get Started](https://github.com/jojo58fr/ccsrch-adv/wiki/Getting-started-with-ccsrch-advance#how-to-download-and-use-ccsrch-advance)   |   [:computer: Downloading & Release notes](https://github.com/jojo58fr/ccsrch-adv/releases)   |   [:pushpin: Documentation](https://github.com/jojo58fr/ccsrch-adv/wiki) | [:warning: Known issues](#known-issues) | [:bug: Report bugs](https://github.com/jojo58fr/ccsrch-adv/issues)
 
 > CCSRCH-ADV or CCSRCH-ADVANCED is a cross-platform tool for searching filesystems for credit card information. It's a fork from adamcaudill/ccsrch with lots of improvements. 
 
